@@ -1,0 +1,16 @@
+{
+  "generator-wupjs": {
+    "module": "wupjs-mongoose-models",
+    "description": "Base models for apps",
+    "author": "Jason Lenoble",
+    "email": "jason.lenoble@gmail.com",
+    "github": "jlenoble",
+    "license": "MIT",
+    "transpile": "es2017",
+    "addons": [],
+    "Class": "WupjsMongooseModels",
+    "updated": 2017,
+    "created": 2017,
+    "year": "2017"
+  }
+}

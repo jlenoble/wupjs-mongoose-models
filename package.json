@@ -1,0 +1,49 @@
+{
+  "name": "wupjs-mongoose-models",
+  "version": "0.0.0",
+  "description": "Base models for apps",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jlenoble/wupjs-mongoose-models.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Jason Lenoble",
+    "email": "jason.lenoble@gmail.com"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.3.0"
+  },
+  "bugs": {
+    "url": "https://github.com/jlenoble/wupjs-mongoose-models/issues"
+  },
+  "homepage": "https://github.com/jlenoble/wupjs-mongoose-models#readme",
+  "devDependencies": {
+    "autoreload-gulp": "^0.2.0",
+    "chai": "^3.5.0",
+    "del": "^2.2.2",
+    "eslint-config-google": "^0.7.1",
+    "gulp": "git://github.com/gulpjs/gulp.git#4.0",
+    "gulp-eslint": "^3.0.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.4.1",
+    "muter": "^0.6.0",
+    "plumb-gulp": "^0.1.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-es2015": "^6.22.0",
+    "gulp-babel": "^6.1.2",
+    "babel-preset-es2016": "^6.22.0",
+    "babel-preset-es2017": "^6.22.0",
+    "gulp-mocha": "^2.2.0"
+  },
+  "dependencies": {
+    "mongoose": "^4.9.0"
+  }
+}
