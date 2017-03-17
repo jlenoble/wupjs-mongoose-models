@@ -1,1 +1,1 @@
-export {Item} from './items';
+export {Item} from './models/items';
