@@ -1,9 +1,9 @@
 import {expect} from 'chai';
-import {Item} from '../src';
+import {Item, readItems} from '../src';
 import freshDb from './fresh-db';
 
 const getAllItems = length => {
-  return Item.find()
+  return readItems()
     .then(items => {
       expect(items).to.have.length(length);
       return items;
