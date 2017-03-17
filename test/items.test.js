@@ -44,6 +44,21 @@ describe('Testing Item', function () {
       });
   }));
 
+  it(`An item can be read`, freshDb(function () {
+    const item = new Item();
+    item.title = 'Amazing!';
+
+    return item.save()
+      .then(res => Item.find({_id: res._id}))
+      .then(items => {
+        const [item1] = items;
+
+        expect(items).to.have.length(1);
+        expect(item1.title).to.equal('Amazing!');
+        expect(item1._id).to.eql(item._id);
+      });
+  }));
+
   it(`An item can be updated`, freshDb(function () {
     return getAllItems(4)
       .then(items => items[3].update({$set: {title: 'Wicked!'}}))
