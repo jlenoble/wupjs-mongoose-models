@@ -2,14 +2,10 @@ import mongoose from 'mongoose';
 import cleanupWrapper from 'cleanup-wrapper';
 import {spawn} from 'child_process';
 import childProcessData from 'child-process-data';
-
-let port = 27017;
+import {getPort} from './port';
 
 export default function freshDb (func) {
-  port = (port + 1)%65536;
-  if (port <= 27017) {
-    port = 27018;
-  }
+  let port = getPort();
 
   return cleanupWrapper(func, {
     port,
