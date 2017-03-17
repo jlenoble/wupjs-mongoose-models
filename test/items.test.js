@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import {Item} from '../src';
+import freshDb from './fresh-db';
 
 const getAllItems = length => {
   return Item.find()
@@ -10,7 +11,9 @@ const getAllItems = length => {
 };
 
 describe('Testing Item', function () {
-  it(`data can be read from database`, function () {
+  this.timeout(20000); // eslint-disable-line no-invalid-this
+
+  it(`data can be read from database`, freshDb(function () {
     return getAllItems(4)
       .then(items => {
         const [item1, item2, item3, item4] = items;
@@ -20,9 +23,9 @@ describe('Testing Item', function () {
         expect(item3.title).to.equal('Yes!');
         expect(item4.title).to.equal('Cool!');
       });
-  });
+  }));
 
-  it(`An item can be created`, function () {
+  it(`An item can be created`, freshDb(function () {
     const item = new Item();
     item.title = 'Amazing!';
 
@@ -39,34 +42,32 @@ describe('Testing Item', function () {
 
         expect(item5._id).to.eql(item._id);
       });
-  });
+  }));
 
-  it(`An item can be updated`, function () {
-    return getAllItems(5)
-      .then(items => items[4].update({$set: {title: 'Wicked!'}}))
-      .then(() => getAllItems(5))
+  it(`An item can be updated`, freshDb(function () {
+    return getAllItems(4)
+      .then(items => items[3].update({$set: {title: 'Wicked!'}}))
+      .then(() => getAllItems(4))
       .then(items => {
-        const [item1, item2, item3, item4, item5] = items;
+        const [item1, item2, item3, item4] = items;
 
         expect(item1.title).to.equal('Great!');
         expect(item2.title).to.equal('Super!');
         expect(item3.title).to.equal('Yes!');
-        expect(item4.title).to.equal('Cool!');
-        expect(item5.title).to.equal('Wicked!');
+        expect(item4.title).to.equal('Wicked!');
       });
-  });
+  }));
 
-  it(`An item can be deleted`, function () {
-    return getAllItems(5)
+  it(`An item can be deleted`, freshDb(function () {
+    return getAllItems(4)
       .then(items => items[0].remove())
-      .then(() => getAllItems(4))
+      .then(() => getAllItems(3))
       .then(items => {
-        const [item2, item3, item4, item5] = items;
+        const [item1, item2, item3] = items;
 
-        expect(item2.title).to.equal('Super!');
-        expect(item3.title).to.equal('Yes!');
-        expect(item4.title).to.equal('Cool!');
-        expect(item5.title).to.equal('Wicked!');
+        expect(item1.title).to.equal('Super!');
+        expect(item2.title).to.equal('Yes!');
+        expect(item3.title).to.equal('Cool!');
       });
-  });
+  }));
 });
